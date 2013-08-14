@@ -340,7 +340,7 @@ $(function(){
 						$("#canvas").append($div)
 						$img.attr("src","http://ali-game.qiniudn.com/mobile"+time+".jpg").load(function(){
 							$div.fadeIn({
-								duration:3000,
+								duration:1000,
 								complete:function(){
 									$("#actor1 .action").one("click",function(){
 										$div.fadeOut({
@@ -361,7 +361,7 @@ $(function(){
 						$("#canvas").append($div)
 						$img.attr("src","http://ali-game.qiniudn.com/mobile"+time+".jpg").load(function(){
 							$div.fadeIn({
-								duration:3000,
+								duration:1000,
 								complete:function(){
 									$("#actor1 .action").one("click",function(){
 										$div.fadeOut({
@@ -512,7 +512,7 @@ $(function(){
 			$("#actor1 .action").one("click",function(){
 				$("#actor1").qtip("destroy")
 				var $newImg = $("<img/>").attr("src","http://ali-game.qiniudn.com/intro10.gif").load(function(){
-					msgOption.content = "既然这样，那你告诉我，你喜不喜欢我？"
+					msgOption.content = "既然这样，那你告诉我，你喜不喜欢本狸子？"
 					msgOption.position.corner = {
 						tooltip:"topMiddle",
 						target:"bottomMiddle"
@@ -536,15 +536,18 @@ $(function(){
 			i = (++i) % 3
 		})
 	}
+	/*
+		after choose yes
+	*/
 	function afterChooseYes(){
 		$(".choose").fadeOut()
 		$("#actor1").qtip("destroy")
 		var $newImg = $("<img/>").addClass("flipx").attr("src","http://ali-game.qiniudn.com/rebirth.gif").load(function(){
-			$("#actor1").animate({left:0},{
+			$("#actor1").animate({left:0,top:400},{
 				duration:5000,
 				complete:function(){
 					var $newImg = $("<img/>").attr("src","http://ali-game.qiniudn.com/love.gif").load(function(){
-						msgOption.content = "那～今天是“七夕”，所以我决定换个背景！～"
+						msgOption.content = "谢谢！～那~今天是你的生日对吧？！"
 						msgOption.position.corner = {
 							tooltip:"topMiddle",
 							target:"bottomMiddle"
@@ -559,8 +562,8 @@ $(function(){
 		$("#actor1 img").replaceWith($newImg)
 	}
 	function changeBg(){
-		$("body").css("background-image","url(http://ali-game.qiniudn.com/qixi-side.jpg)")
-		$("#canvas").css("background-image","url(http://ali-game.qiniudn.com/qixi-main.jpg)")
+		$("body").css("background-image","url(images/xiangrikui.jpg)")
+		//$("#canvas").css("background-image","url(http://ali-game.qiniudn.com/qixi-main.jpg)")
 		$("#actor1 .action").one("click",function(){
 			$("#actor1").qtip("destroy")
 			$("#player").load("angel-player.html",function(){
@@ -575,9 +578,10 @@ $(function(){
 					$("#girl").fadeIn({
 						complete:function(){
 							var $newImg = $("<img/>").attr("src","http://ali-game.qiniudn.com/shame.gif").load(function(){
-								$("#actor1").animate({left:670},{
+								$("#actor1").animate({left:840,top:350},{
 									duration:30000,
-									complete:meet
+									complete:meet,
+									easing:'linear'
 								})
 							})
 							$("#actor1 img").replaceWith($newImg)
@@ -588,18 +592,13 @@ $(function(){
 		})
 	}
 	function meet(){
-		var pics = [
-			$("#flower"),
-			$("#kiss"),
-			$("#music"),
-			$("#music-girl"),
-			$("#love-stand"),
-			$("#love-bubble"),
-			$("#follow"),
+		var pics_raw = [
 			$("#hang"),
-			$("#hang-girl"),
-			$("#pai")
+			$("#pai"),
+			$("#music-girl"),
+			$("#flower")
 		]
+		var pics = pics_raw.reverse()
 		function maker(pics,exit){
 			var $e = pics.pop()
 			if($e){
@@ -626,17 +625,17 @@ $(function(){
 		})	
 	}
 	function last(){
-		msgOption.content = "七夕快乐！珍！"
+		msgOption.content = "波姐！生日快乐哦！^O^"
 		msgOption.position.corner = {
 			tooltip:"bottomMiddle",
 			target:"topMiddle"
 		}
 		$("#flower").qtip(msgOption)
 		var words_raw = [
-			"对我来说，你是很重要的人。",
-			"所以，在这个特殊又平凡的日子里",
-			"我希望你能比别人更快乐，更幸福^_^",
-			"一定要开心啊～～～^_^"
+			"马上要毕业了，希望你可以去做想做的事情，不要留下遗憾～",
+			"祝你每天都有一个好心情！～ ",
+			"废话不多说了～You are my best friend!~",
+			"一定要开心哦～^O^"
 		]
 		var words = words_raw.reverse()
 		$("#flower .action").one("click",maker(words,finalFunc))
