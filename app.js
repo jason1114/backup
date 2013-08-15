@@ -276,6 +276,7 @@ $(function(){
 					$("#actor1 .action").one("click",dizzy)
 				})
 			})
+			$("#actor2").fadeIn()
 		})
 		$("#actor2 img").replaceWith($newImg)
 		return false;
